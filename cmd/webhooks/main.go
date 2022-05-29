@@ -17,7 +17,7 @@ func telegramInit(token string) {
 
 	bot, err = tgbotapi.NewBotAPI(token)
 	if err != nil {
-		logrus.Panic(err)
+		logrus.Fatal(err)
 	}
 
 	bot.Debug = true
@@ -57,7 +57,7 @@ func main() {
 	var token = viper.GetString("token")
 
 	if err := initConfig(); err != nil {
-		logrus.Fatalf("error config initialization: %s", err.Error())
+		logrus.Fatalf("error configs initialization: %s", err.Error())
 	}
 
 	// Init telegram bot
@@ -78,6 +78,6 @@ func main() {
 
 func initConfig() error {
 	viper.AddConfigPath("configs")
-	viper.SetConfigName("config")
+	viper.SetConfigName("configs")
 	return viper.ReadInConfig()
 }
